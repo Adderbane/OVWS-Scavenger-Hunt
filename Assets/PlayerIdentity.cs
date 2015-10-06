@@ -61,9 +61,17 @@ public class PlayerIdentity : NetworkBehaviour {
 		Renderer r = transform.Find("Capsule").GetComponent<Renderer>();
 		if (myTeam == "red") {
 			r.material = mats[0];
+			Vector3 newPos = new Vector3 (Random.Range(100.0f, 120.0f), 0.0f, Random.Range(-150.0f, -120.0f));
+			float height = Terrain.activeTerrain.SampleHeight(newPos) + 1.4f;
+			newPos.y = height;
+			myTransform.position = newPos;
 		}
 		else {
 			r.material = mats[1];
+			Vector3 newPos = new Vector3 (Random.Range(-200.0f, -150.0f), 0.0f, Random.Range(100.0f, 175.0f));
+			float height = Terrain.activeTerrain.SampleHeight(newPos) + 1.4f;
+			newPos.y = height;
+			myTransform.position = newPos;
 		}
 	}
 

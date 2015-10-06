@@ -16,9 +16,6 @@ public class MyNetworkManager: NetworkManager
 		hostButton;
 	[SerializeField]
 	Button
-		joinButton;
-	[SerializeField]
-	Button
 		joinRed;
 	[SerializeField]
 	Button
@@ -79,49 +76,35 @@ public class MyNetworkManager: NetworkManager
 	// button event handlers
 	public void StartupHost ()
 	{
-		print ("clicked button, starting host (we hope)");
 		SetIPAddress ();
 		SetPort ();
 		team = "red";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 		NetworkManager.singleton.StartHost ();
 	}
-	
-	public void JoinGame ()
-	{
-		print ("clicked button, join game");
-		SetIPAddress ();
-		SetPort ();
-		team = "blue";
-		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 
-		playerNames.Add (username);
-
-		NetworkManager.singleton.StartClient ();
-	}
 	//Join Red button
 	public void JoinR ()
 	{
-		print ("clicked button, join game");
 		SetIPAddress ();
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
+		team = "red";
 		
 		playerNames.Add (username); //store username
-		playersTeams [0] = "Red"; //assign to team
+		//playersTeams [0] = "Red"; //assign to team
 		
 		NetworkManager.singleton.StartClient ();
 	}
 	//Join Blue button
 	public void JoinB ()
 	{
-		print ("clicked button, join game");
 		SetIPAddress ();
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
-		
+		team = "blue";
 		playerNames.Add (username); //store username
-		playersTeams [1] = "Blue"; //assign to team (not perfect)
+		//playersTeams [1] = "Blue"; //assign to team (not perfect)
 		
 		NetworkManager.singleton.StartClient ();
 	}
@@ -172,9 +155,6 @@ public class MyNetworkManager: NetworkManager
 		
 		GameObject.Find ("btnHostGame").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		GameObject.Find ("btnHostGame").GetComponent<Button> ().onClick.AddListener (StartupHost);
-		
-		GameObject.Find ("btnJoinGame").GetComponent<Button> ().onClick.RemoveAllListeners ();
-		GameObject.Find ("btnJoinGame").GetComponent<Button> ().onClick.AddListener (JoinGame);
 		//
 		GameObject.Find ("btnJoinRed").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		GameObject.Find ("btnJoinRed").GetComponent<Button> ().onClick.AddListener (JoinR);
