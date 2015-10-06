@@ -32,9 +32,7 @@ public class MyNetworkManager: NetworkManager
 	
 	Chat chat;
 	public string username;
-
-	public Material newRed;
-	public Material newBlue;
+	public string team;
 
 	//holds usernames, because you can not dynamically push to an array in Unity
 	List<string> playerNames = new List<string>();
@@ -84,6 +82,7 @@ public class MyNetworkManager: NetworkManager
 		print ("clicked button, starting host (we hope)");
 		SetIPAddress ();
 		SetPort ();
+		team = "red";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 		NetworkManager.singleton.StartHost ();
 	}
@@ -93,6 +92,7 @@ public class MyNetworkManager: NetworkManager
 		print ("clicked button, join game");
 		SetIPAddress ();
 		SetPort ();
+		team = "blue";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 
 		playerNames.Add (username);
@@ -132,14 +132,15 @@ public class MyNetworkManager: NetworkManager
 	{
 		if (playersTeams [0] == "Red") {
 		    //give new material
-			playerPrefab.GetComponentInChildren<MeshRenderer>().material = newRed;
+			print ("redteam");
+			//playerPrefab.GetComponentInChildren<MeshRenderer>().material = newRed;
 			//spawn on Red side (test point)
 			var player = (GameObject)GameObject.Instantiate (playerPrefab, spawnPointsRed [0], Quaternion.identity);
 			NetworkServer.AddPlayerForConnection (conn, player, playerControllerId);
 		}
 		if (playersTeams [1] == "Blue") {
 			//give new material
-			playerPrefab.GetComponentInChildren<MeshRenderer>().material = newBlue;
+			//playerPrefab.GetComponentInChildren<MeshRenderer>().material = newBlue;
 			//spawn on Blue side (test point)
 			var player = (GameObject)GameObject.Instantiate (playerPrefab, spawnPointsBlue [0], Quaternion.identity);
 			NetworkServer.AddPlayerForConnection (conn, player, playerControllerId);
