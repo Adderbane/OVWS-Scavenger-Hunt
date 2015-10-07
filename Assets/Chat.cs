@@ -20,6 +20,7 @@ public class Chat : NetworkBehaviour
 	Text
 		chatWindow;
 	string username;
+	string team;
 	
 
 
@@ -32,6 +33,7 @@ public class Chat : NetworkBehaviour
 		//setup text boxes
 		chatWindow.text = "";
 		username = GameObject.Find ("NetManager").GetComponent<MyNetworkManager> ().username;
+		team = GameObject.Find ("NetManager").GetComponent<MyNetworkManager> ().team;
 
 		NetworkServer.RegisterHandler (chatMsg, OnServerPostChatMessage);   
 
@@ -76,7 +78,22 @@ public class Chat : NetworkBehaviour
 	{
 		if (message.Length == 0)
 			return;
-		var msg = new StringMessage (username + ": " + message);
+		string teamBit = "";
+		if (message.Length > 5) {
+			if (message.Substring (0, 5) == "/all ") {
+				teamBit = "a";
+				message = message.Remove (0, 5);
+			}
+		}
+		else if (team == "red") {
+			teamBit = "r";
+		}
+		else if (team == "blue") {
+			teamBit = "b";
+		}
+		else
+			teamBit = "";
+		var msg = new StringMessage (teamBit + username + ": " + message);
 		NetworkManager.singleton.client.Send (chatMsg, msg);
 		
 		chatInput.text = "";
@@ -87,7 +104,20 @@ public class Chat : NetworkBehaviour
 	//callback we registered for when the syncList changes
 	private void OnChatUpdated (SyncListString.Operation op, int index)
 	{
-		chatWindow.text += chatLog [chatLog.Count - 1] + "\n";
+		string newMessage = chatLog [chatLog.Count - 1] + "\n";
+		if (newMessage.Substring(0,1) == "a") {
+			newMessage = newMessage.Remove(0,1);
+			newMessage = "[All] " + newMessage;
+			chatWindow.text += newMessage;
+		}
+		else if (team.Substring(0,1) == newMessage.Substring(0,1)) {
+			newMessage = newMessage.Remove(0,1);
+			newMessage = "[Team] " + newMessage;
+			chatWindow.text += newMessage;
+		}
+		else {
+			
+		}
 	}
 
 
