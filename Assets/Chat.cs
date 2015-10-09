@@ -78,21 +78,21 @@ public class Chat : NetworkBehaviour
 	{
 		if (message.Length == 0)
 			return;
-		string teamBit = "";
+
+		//Creates a teambit based on team
+		string teamBit = team.Substring (0, 1);
+
+		//Checks if the message begins "/all " and changes teambit to a if so
 		if (message.Length > 5) {
 			if (message.Substring (0, 5) == "/all ") {
 				teamBit = "a";
+
+				//Slices /all off the message
 				message = message.Remove (0, 5);
 			}
 		}
-		else if (team == "red") {
-			teamBit = "r";
-		}
-		else if (team == "blue") {
-			teamBit = "b";
-		}
-		else
-			teamBit = "";
+
+		//Compiles message with teambit at start
 		var msg = new StringMessage (teamBit + username + ": " + message);
 		NetworkManager.singleton.client.Send (chatMsg, msg);
 		
@@ -104,6 +104,7 @@ public class Chat : NetworkBehaviour
 	//callback we registered for when the syncList changes
 	private void OnChatUpdated (SyncListString.Operation op, int index)
 	{
+		//Checks the teambit and only posts if appropriate
 		string newMessage = chatLog [chatLog.Count - 1] + "\n";
 		if (newMessage.Substring(0,1) == "a") {
 			newMessage = newMessage.Remove(0,1);
@@ -114,9 +115,6 @@ public class Chat : NetworkBehaviour
 			newMessage = newMessage.Remove(0,1);
 			newMessage = "[Team] " + newMessage;
 			chatWindow.text += newMessage;
-		}
-		else {
-			
 		}
 	}
 
