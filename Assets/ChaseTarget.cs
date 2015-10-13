@@ -11,9 +11,12 @@ public class ChaseTarget : NetworkBehaviour {
 	[SyncVar (hook="SetWinner")]
 	protected string winner;
 
+	ScoreKeep scoreKeep;
+
 	// Use this for initialization
 	void Start () {
 		winner = "";
+		scoreKeep = GameObject.Find ("ScoreKeeper").GetComponent<ScoreKeep> ();
 	}
 	
 	// Update is called once per frame
@@ -31,8 +34,9 @@ public class ChaseTarget : NetworkBehaviour {
     protected virtual void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
-			string win = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myUsername;
-			CmdCaught(win);
+			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
+			CmdCaught(team);
+
 		}
 	}
 
@@ -44,8 +48,7 @@ public class ChaseTarget : NetworkBehaviour {
 		float height = Terrain.activeTerrain.SampleHeight(newPos) + 1.0f;
 		newPos.y = height;
 		pos = newPos;
-		winner = newWin;
-		GameObject.Find ("LastWin").GetComponent<Text> ().text = "Last Winner: " + GetWinner();
+		scoreKeep.UpdateScore (newWin);
 	}
 
 	//Returns winner
@@ -58,6 +61,6 @@ public class ChaseTarget : NetworkBehaviour {
 	[Client]
 	void SetWinner (string nextWin)
 	{
-		GameObject.Find ("LastWin").GetComponent<Text> ().text = "Last Winner: " + nextWin;
+		//GameObject.Find ("LastWin").GetComponent<Text> ().text = "Last Winner: " + nextWin;
 	}
 }
