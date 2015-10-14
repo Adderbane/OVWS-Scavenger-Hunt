@@ -53,6 +53,7 @@ public class TwoPersonCatch : ChaseTarget {
 	{
 		if (team == "red") {
 			numRed++;
+			Debug.Log(numRed);
 		}
 		else {
 			numBlue++;
@@ -65,6 +66,7 @@ public class TwoPersonCatch : ChaseTarget {
 	{
 		if (team == "red") {
 			numRed--;
+			Debug.Log(numRed);
 		}
 		else {
 			numBlue--;
@@ -81,7 +83,6 @@ public class TwoPersonCatch : ChaseTarget {
 		float height = Terrain.activeTerrain.SampleHeight(newPos) + 1.0f;
 		newPos.y = height;
 		pos = newPos;
-		winner = newWin;
-		GameObject.Find ("LastWin").GetComponent<Text> ().text = "Last Winner: " + GetWinner();
+		Debug.Log(numRed);
 	}
 }

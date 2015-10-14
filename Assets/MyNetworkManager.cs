@@ -31,29 +31,14 @@ public class MyNetworkManager: NetworkManager
 	public string username;
 	public string team;
 
-	//holds usernames, because you can not dynamically push to an array in Unity
-	List<string> playerNames = new List<string>();
-	//
-	private Vector3[] spawnPointsRed; //fill up with predefined spawn points
-	private Vector3[] spawnPointsBlue; //fill up with predefined spawn points
-	//
-	private string[] playersTeams;
-	//List<Vector3> playersTeams; 
+	public GameObject spawnR;
+	public GameObject spawnB;
 
 	void Start ()
 	{
 		print ("MyNetworkManager : Start");
-		//
-		spawnPointsRed = new Vector3[3];
-		spawnPointsBlue = new Vector3[3];
-
-		spawnPointsRed [0] = new Vector3 (62.8f, 1f, 184.2f);
-		spawnPointsRed [1] = new Vector3 (-18.6f, 1f, 184.2f);
-		spawnPointsRed [2] = new Vector3 (-77.2f, 1f, 184.2f);
-		//
-		spawnPointsBlue [0] = new Vector3 (-100.8f, 1f, 34.7f);
-		spawnPointsBlue [1] = new Vector3 (-61.6f, 1f, 34.7f);
-		spawnPointsBlue [2] = new Vector3 (-22f, 1f, 34.7f);
+		spawnR = GameObject.FindGameObjectWithTag ("spawnRed");
+		spawnB = GameObject.FindGameObjectWithTag ("spawnBlue");
 
 	}
 	
@@ -80,6 +65,7 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		team = "red";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
+		//NetworkManager.RegisterStartPosition(spawnR.transform);	
 		NetworkManager.singleton.StartHost ();
 	}
 
@@ -90,10 +76,7 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 		team = "red";
-		
-		playerNames.Add (username); //store username
-		//playersTeams [0] = "Red"; //assign to team
-		
+		//NetworkManager.RegisterStartPosition(spawnR.transform);		
 		NetworkManager.singleton.StartClient ();
 	}
 	//Join Blue button
@@ -103,31 +86,8 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 		team = "blue";
-		playerNames.Add (username); //store username
-		//playersTeams [1] = "Blue"; //assign to team (not perfect)
-		
+		//NetworkManager.RegisterStartPosition(spawnB.transform);
 		NetworkManager.singleton.StartClient ();
-	}
-	//
-	//overrides the way player objects are created
-	//we need this for spawn points
-	public virtual void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-	{
-		if (playersTeams [0] == "Red") {
-		    //give new material
-			print ("redteam");
-			//playerPrefab.GetComponentInChildren<MeshRenderer>().material = newRed;
-			//spawn on Red side (test point)
-			var player = (GameObject)GameObject.Instantiate (playerPrefab, spawnPointsRed [0], Quaternion.identity);
-			NetworkServer.AddPlayerForConnection (conn, player, playerControllerId);
-		}
-		if (playersTeams [1] == "Blue") {
-			//give new material
-			//playerPrefab.GetComponentInChildren<MeshRenderer>().material = newBlue;
-			//spawn on Blue side (test point)
-			var player = (GameObject)GameObject.Instantiate (playerPrefab, spawnPointsBlue [0], Quaternion.identity);
-			NetworkServer.AddPlayerForConnection (conn, player, playerControllerId);
-		}
 	}
 	
 	public void Disconnect ()

@@ -8,14 +8,10 @@ public class ChaseTarget : NetworkBehaviour {
 	[SyncVar (hook="Move")]
 	protected Vector3 pos;
 
-	[SyncVar (hook="SetWinner")]
-	protected string winner;
-
-	ScoreKeep scoreKeep;
+	protected ScoreKeep scoreKeep;
 
 	// Use this for initialization
 	void Start () {
-		winner = "";
 		scoreKeep = GameObject.Find ("ScoreKeeper").GetComponent<ScoreKeep> ();
 	}
 	
@@ -49,18 +45,5 @@ public class ChaseTarget : NetworkBehaviour {
 		newPos.y = height;
 		pos = newPos;
 		scoreKeep.UpdateScore (newWin);
-	}
-
-	//Returns winner
-	public string GetWinner()
-	{
-		return winner;
-	}
-
-	//Sets winner on clients
-	[Client]
-	void SetWinner (string nextWin)
-	{
-		//GameObject.Find ("LastWin").GetComponent<Text> ().text = "Last Winner: " + nextWin;
 	}
 }
