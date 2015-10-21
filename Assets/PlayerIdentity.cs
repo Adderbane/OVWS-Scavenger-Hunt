@@ -92,4 +92,12 @@ public class PlayerIdentity : NetworkBehaviour {
 			myTransform.name = MakeMyID();
 		}
 	}
+
+	public void PopupOn(){
+		if (isLocalPlayer) {
+			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().alpha = 1;
+			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().interactable = true;
+		}
+		
+	}
 }

@@ -52,24 +52,4 @@ public class ScoreKeep : NetworkBehaviour {
 		NetworkManager.singleton.client.Send (chatMsg, msg);
 	}
 	
-	/*
-	public void UpdateScore(string team){
-		if (team == "blue") {
-			blueScore += 1;
-			CmdUpdateScore(blueScore, "blue");
-		} else {
-			redScore += 1;
-			CmdUpdateScore(redScore, "red");
-		}
-	}
-
-	[Command]
-	void CmdUpdateScore(int score, string team){
-		if (team == "blue") {
-			blueScore = score;
-		} else {
-			redScore = score;
-		}
-	} */
-	
 }
