@@ -33,6 +33,8 @@ public class MyNetworkManager: NetworkManager
 
 	Vector3 spawnR;
 	Vector3 spawnB;
+	Vector3 spawn;
+	string spawnTeam;
 
 	void Start ()
 	{
@@ -65,7 +67,7 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		team = "red";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
-		//NetworkManager.RegisterStartPosition(spawnR.transform);	
+		spawnTeam = team;
 		NetworkManager.singleton.StartHost ();
 	}
 
@@ -75,8 +77,7 @@ public class MyNetworkManager: NetworkManager
 		SetIPAddress ();
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
-		team = "red";
-		//NetworkManager.RegisterStartPosition(spawnR.transform);		
+		team = "red";	
 		NetworkManager.singleton.StartClient ();
 	}
 	//Join Blue button
@@ -86,7 +87,6 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
 		team = "blue";
-		//NetworkManager.RegisterStartPosition(spawnB.transform);
 		NetworkManager.singleton.StartClient ();
 	}
 	
@@ -132,7 +132,11 @@ public class MyNetworkManager: NetworkManager
 
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
 	{
-		GameObject player = (GameObject)Instantiate(playerPrefab, new Vector3(, Quaternion.Identity);
+		if (spawnTeam == "red") {
+			spawn = spawnR;
+		} else
+			spawn = spawnB;
+		GameObject player = (GameObject)Instantiate(playerPrefab, spawn, Quaternion.identity);
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
 }
