@@ -19,8 +19,7 @@ public class PlayerSyncPosition : NetworkBehaviour
 	private float normalLerpRate = 70;
 	private float fasterLerpRate = 100;
 
-	private Text winText;
-	private GameObject tar;
+	private bool spawned;
 
 	//variables to only send data when it's changed beyond a threshold.
 	private Vector3 lastPosition;
@@ -32,8 +31,8 @@ public class PlayerSyncPosition : NetworkBehaviour
 	void Start ()
 	{
 		lerpRate = normalLerpRate;
-		//winText = GameObject.Find ("LastWin").GetComponent<Text>();
-		//tar = GameObject.Find ("Target");
+
+		spawned = false;
 	}
 	
 	// Update is called once per frame but it's not guaranteed to be exactly regular,
@@ -43,8 +42,18 @@ public class PlayerSyncPosition : NetworkBehaviour
 	// or rotation) and the newly acquired position information
 	void Update ()
 	{
+		if (!spawned && isLocalPlayer) {
+			if (this.gameObject.GetComponent<PlayerIdentity>().GetTeam() == "red") {
+				this.gameObject.transform.position = new Vector3 (-25.4f, 1.04f, 16.72f);
+				CmdSendPositionToServer(new Vector3 (-25.4f, 1.04f, 16.72f));
+			}
+			else {
+				this.gameObject.transform.position = new Vector3 (41.9f, 1.6f, 8.0f);
+				CmdSendPositionToServer(new Vector3 (41.9f, 1.6f, 8.0f));
+			}
+			spawned = true;
+		}
 		LerpPosition ();
-		//winText.text = "Last Winner: " + tar.GetComponent<ChaseTarget>().GetWinner();
 	}
 	
 	// FixedUpdate will fire at regular intervals, making it a good place
