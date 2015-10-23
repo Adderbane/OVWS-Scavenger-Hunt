@@ -49,7 +49,7 @@ public class PlayerIdentity : NetworkBehaviour {
 		return uniqueName;
 	}
 
-	string GetTeam()
+	public string GetTeam()
 	{
 		string team = GameObject.Find ("NetManager").GetComponent<MyNetworkManager> ().team;
 		return team;

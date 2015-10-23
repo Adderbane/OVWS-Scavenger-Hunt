@@ -42,14 +42,14 @@ public class PlayerSyncPosition : NetworkBehaviour
 	// or rotation) and the newly acquired position information
 	void Update ()
 	{
-		if (!spawned) {
-			if (this.gameObject.GetComponent<PlayerIdentity>().myTeam == "red") {
+		if (!spawned && isLocalPlayer) {
+			if (this.gameObject.GetComponent<PlayerIdentity>().GetTeam() == "red") {
 				this.gameObject.transform.position = new Vector3 (-25.4f, 1.04f, 16.72f);
-				syncPos = new Vector3 (-25.4f, 1.04f, 16.72f);
+				CmdSendPositionToServer(new Vector3 (-25.4f, 1.04f, 16.72f));
 			}
 			else {
 				this.gameObject.transform.position = new Vector3 (41.9f, 1.6f, 8.0f);
-				syncPos = new Vector3 (41.9f, 1.6f, 8.0f);
+				CmdSendPositionToServer(new Vector3 (41.9f, 1.6f, 8.0f));
 			}
 			spawned = true;
 		}
