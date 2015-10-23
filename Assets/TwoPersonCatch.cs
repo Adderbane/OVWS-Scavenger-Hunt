@@ -21,10 +21,10 @@ public class TwoPersonCatch : ChaseTarget {
 	void Update () {
 		if (isServer) {
 			if (numRed >= 2) {
-				CmdCaught("red");
+				CmdCaught("red", score);
 			}
 			else if (numBlue >= 2) {
-				CmdCaught("blue");
+				CmdCaught("blue", score);
 			}
 		}
 	}
@@ -75,7 +75,7 @@ public class TwoPersonCatch : ChaseTarget {
 
 	//Called on server when collision criteria are met
 	[Command]
-	protected override void CmdCaught(string newWin)
+	protected override void CmdCaught(string newWin, int score)
 	{
 		numRed = 0;
 		numBlue = 0;

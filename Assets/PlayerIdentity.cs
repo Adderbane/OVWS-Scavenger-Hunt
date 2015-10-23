@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerIdentity : NetworkBehaviour {
 
@@ -93,8 +94,9 @@ public class PlayerIdentity : NetworkBehaviour {
 		}
 	}
 
-	public void PopupOn(){
+	public void PopupOn(string popText){
 		if (isLocalPlayer) {
+			GameObject.Find ("Popup").transform.GetChild(0).GetComponent<Text>().text = popText;
 			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().alpha = 1;
 			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().interactable = true;
 		}
