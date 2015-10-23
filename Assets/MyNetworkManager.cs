@@ -31,16 +31,9 @@ public class MyNetworkManager: NetworkManager
 	public string username;
 	public string team;
 
-	Vector3 spawnR;
-	Vector3 spawnB;
-	Vector3 spawn;
-	string spawnTeam;
-
 	void Start ()
 	{
 		print ("MyNetworkManager : Start");
-		spawnR = new Vector3 (-25.4f, 1.04f, 16.72f);
-		spawnB = new Vector3 (41.9f, 1.6f, 8.0f);
 
 	}
 	
@@ -67,7 +60,6 @@ public class MyNetworkManager: NetworkManager
 		SetPort ();
 		team = "red";
 		username = GameObject.Find ("txtUsername").transform.FindChild ("Text").GetComponent<Text> ().text;
-		spawnTeam = team;
 		NetworkManager.singleton.StartHost ();
 	}
 
@@ -128,15 +120,5 @@ public class MyNetworkManager: NetworkManager
 	{
 		GameObject.Find ("btnDisconnect").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		GameObject.Find ("btnDisconnect").GetComponent<Button> ().onClick.AddListener (NetworkManager.singleton.StopClient);
-	}
-
-	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
-	{
-		if (spawnTeam == "red") {
-			spawn = spawnR;
-		} else
-			spawn = spawnB;
-		GameObject player = (GameObject)Instantiate(playerPrefab, spawn, Quaternion.identity);
-		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
 }
