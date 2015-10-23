@@ -45,7 +45,7 @@ public class TwoPersonPush : ChaseTarget {
 	//Recognize people hitting an object
 	protected override void OnCollisionEnter(Collision collision)
 	{
-		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
+		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") { //whys is there a NULL reference err here?
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
 			CmdEnter(team);
 		}
