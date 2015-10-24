@@ -21,16 +21,16 @@ public class TwoPersonCatch : ChaseTarget {
 	void Update () {
 		if (isServer) {
 			if (numRed >= 2) {
-				CmdCaught("red");
+				Caught("red", score);
 			}
 			else if (numBlue >= 2) {
-				CmdCaught("blue");
+				Caught("blue", score);
 			}
 		}
 	}
 
 	//Recognize people hitting an object
-	protected override void OnCollisionEnter(Collision collision)
+	protected void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
@@ -74,8 +74,8 @@ public class TwoPersonCatch : ChaseTarget {
 	}
 
 	//Called on server when collision criteria are met
-	[Command]
-	protected override void CmdCaught(string newWin)
+	[Client]
+	protected override void Caught(string newWin, int score)
 	{
 		numRed = 0;
 		numBlue = 0;

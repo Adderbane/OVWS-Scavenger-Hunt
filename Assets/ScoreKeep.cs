@@ -39,37 +39,19 @@ public class ScoreKeep : NetworkBehaviour {
 	[Server]
 	void OnServerUpdateScore(NetworkMessage netMsg){
 		string team = netMsg.ReadMessage<StringMessage>().value;
-		if (team == "blue") {
-			blueScore += 1;
-		} else {
-			redScore += 1;
+		int score = int.Parse(team.Substring (team.Length - 1));
+		team = team.Substring (0, team.Length - 1);
+		if (team == "blue" && score > blueScore) {
+			blueScore = score;
+		} else if (team == "red" && score > redScore) {
+			redScore = score;
 		}
 	}
 	
 	[Client]
-	public void UpdateScore(string team){
-		var msg = new StringMessage (team);
+	public void UpdateScore(string team, string score){
+		var msg = new StringMessage (team+score);
 		NetworkManager.singleton.client.Send (chatMsg, msg);
 	}
-	
-	/*
-	public void UpdateScore(string team){
-		if (team == "blue") {
-			blueScore += 1;
-			CmdUpdateScore(blueScore, "blue");
-		} else {
-			redScore += 1;
-			CmdUpdateScore(redScore, "red");
-		}
-	}
 
-	[Command]
-	void CmdUpdateScore(int score, string team){
-		if (team == "blue") {
-			blueScore = score;
-		} else {
-			redScore = score;
-		}
-	} */
-	
 }
