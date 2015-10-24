@@ -1,22 +1,29 @@
 fileFormatVersion: 2
-guid: 56c3f2cbc110c05439c69b40ceb13e3a
+guid: ce8d79c79d11b8f9d00076e98d76c639
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    4300000: default
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pPlane1
+    4300002: nurbsToPoly1
+    4300004: pCylinder1
+    4300006: waterPlaneMesh
+    4300008: WaterBasicPlane
+    4300010: WaterSimplePlane
+    11100000: //RootNode
   materials:
-    importMaterials: 1
-    materialName: 0
-    materialSearch: 0
+    importMaterials: 0
+    materialName: 1
+    materialSearch: 2
   animations:
-    legacyGenerateAnimations: 4
+    legacyGenerateAnimations: 0
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
+    pivotNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -33,18 +40,17 @@ ModelImporter:
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
-    useFileUnits: 1
+    useFileUnits: 0
     optimizeMeshForGPU: 1
-    keepQuads: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
+    splitTangentsAcrossUV: 0
     normalImportMode: 0
     tangentImportMode: 1
   importAnimation: 1
@@ -65,4 +71,3 @@ ModelImporter:
   additionalBone: 0
   userData: 
   assetBundleName: 
-  assetBundleVariant: 
