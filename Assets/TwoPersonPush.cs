@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class TwoPersonPush : ChaseTarget {
-	
+
 	//Number of players in contact with an object
 	[SyncVar]
 	int numRed;
@@ -29,7 +29,7 @@ public class TwoPersonPush : ChaseTarget {
 		rb = rollinRock.GetComponent<Rigidbody>();
 		//coolBeans = transform.position.x;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (isServer) {
@@ -41,7 +41,7 @@ public class TwoPersonPush : ChaseTarget {
 			}
 		}
 	}
-	
+
 	//Recognize people hitting an object
 	protected void OnCollisionEnter(Collision collision)
 	{
@@ -50,7 +50,7 @@ public class TwoPersonPush : ChaseTarget {
 			CmdEnter(team);
 		}
 	}
-	
+
 	//People leave an object
 	void OnCollisionExit(Collision collision)
 	{
@@ -59,7 +59,7 @@ public class TwoPersonPush : ChaseTarget {
 			CmdLeave(team);
 		}
 	}
-	
+
 	//Called from CollisionEnter
 	[Command]
 	void CmdEnter(string team)
@@ -72,7 +72,7 @@ public class TwoPersonPush : ChaseTarget {
 			numBlue++;
 		}
 	}
-	
+
 	//Called from collision leave
 	[Command]
 	void CmdLeave(string team)
@@ -85,18 +85,18 @@ public class TwoPersonPush : ChaseTarget {
 			numBlue--;
 		}
 	}
-	
+
 	//Called on server when collision criteria are met
 	[Client]
 	protected override void Caught(string newWin, int score)
 	{
-		//numRed = 0;
-		//numBlue = 0;
-		//
+
 		Vector3 myForward = transform.TransformDirection (Vector3.forward);
 		rb.AddForce (myForward * 10.0f);
 
-		//coolBeans += 20.0f;
+		pos = rb.gameObject.transform.position; //Tells it to update on client
+
+		//--------------------------------------------------------------------------
 
 		//transform.Translate (velocity * Time.deltaTime);
 		//this.transform.position += Vector3.up;
@@ -106,5 +106,4 @@ public class TwoPersonPush : ChaseTarget {
 
 		//ball.transform.Translate(Vector3.up * Time.deltaTime, Space.Self);
 	}
-
 }
