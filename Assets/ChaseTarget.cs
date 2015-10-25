@@ -62,9 +62,5 @@ public class ChaseTarget : NetworkBehaviour {
 		string strScore = score.ToString ();
 		scoreKeep.UpdateScore (team, strScore);
 	}
-	
-	public void PopupOff(){
-		GameObject.Find("Popup").GetComponent<CanvasGroup>().alpha = 0;
-		GameObject.Find("Popup").GetComponent<CanvasGroup>().interactable = false;
-	}
+
 }

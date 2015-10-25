@@ -93,5 +93,9 @@ public class PlayerIdentity : NetworkBehaviour {
 		}
 		
 	}
+	public void PopupOff(){
+		GameObject.Find("Popup").GetComponent<CanvasGroup>().alpha = 0;
+		GameObject.Find("Popup").GetComponent<CanvasGroup>().interactable = false;
+	}
 
 }
