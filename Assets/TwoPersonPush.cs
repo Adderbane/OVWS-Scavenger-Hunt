@@ -10,6 +10,8 @@ public class TwoPersonPush : ChaseTarget {
 	int numRed;
 	[SyncVar]
 	int numBlue;
+	[SyncVar (hook="rbMove")]
+	Vector3 rbPos;
 
 	public GameObject rollinRock;
 	Rigidbody rb;
@@ -43,7 +45,7 @@ public class TwoPersonPush : ChaseTarget {
 	}
 	
 	//Recognize people hitting an object
-	protected void OnCollisionEnter(Collision collision)
+	protected override void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") { //whys is there a NULL reference err here?
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
@@ -52,7 +54,7 @@ public class TwoPersonPush : ChaseTarget {
 	}
 	
 	//People leave an object
-	void OnCollisionExit(Collision collision)
+	protected override void OnCollisionExit(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
@@ -85,26 +87,27 @@ public class TwoPersonPush : ChaseTarget {
 			numBlue--;
 		}
 	}
-	
-	//Called on server when collision criteria are met
+
+	[Command]
+	void CmdMove (Vector3 newPos)
+	{
+		rbPos = newPos;
+		numRed = 0;
+		numBlue = 0;
+	}
+
+	//Called when collision criteria are met
 	[Client]
 	protected override void Caught(string newWin, int score)
 	{
-		//numRed = 0;
-		//numBlue = 0;
-		//
 		Vector3 myForward = transform.TransformDirection (Vector3.forward);
-		rb.AddForce (myForward * 10.0f);
+		CmdMove(rb.transform.position + myForward * 10.0f);
+	}
 
-		//coolBeans += 20.0f;
-
-		//transform.Translate (velocity * Time.deltaTime);
-		//this.transform.position += Vector3.up;
-
-		//transform.Translate (0, Time.deltaTime, 0, Space.Self);
-
-
-		//ball.transform.Translate(Vector3.up * Time.deltaTime, Space.Self);
+	[Client]
+	void rbMove(Vector3 newPos)
+	{
+		rb.transform.position = newPos;
 	}
 
 }
