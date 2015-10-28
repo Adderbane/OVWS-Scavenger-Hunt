@@ -88,14 +88,11 @@ public class PlayerIdentity : NetworkBehaviour {
 	public void PopupOn(string popText){
 		if (isLocalPlayer) {
 			GameObject.Find ("Popup").transform.GetChild(0).GetComponent<Text>().text = popText;
-			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().alpha = 1;
 			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().interactable = true;
+			GameObject.Find ("Popup").GetComponent<CanvasGroup> ().alpha = 1;
+
 		}
 		
-	}
-	public void PopupOff(){
-		GameObject.Find("Popup").GetComponent<CanvasGroup>().alpha = 0;
-		GameObject.Find("Popup").GetComponent<CanvasGroup>().interactable = false;
 	}
 
 }
