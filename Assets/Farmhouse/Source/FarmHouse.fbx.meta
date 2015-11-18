@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 4b17e6aa61f022841b17cd7163f76c04
+labels:
+- House
+- Building
+- Brick
+- Barn
+- Village
+timeCreated: 1435303967
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Door1
+    100002: Door2
+    100004: Doorframe
+    100006: Doorframe1
+    100008: Doorframe2
+    100010: //RootNode
+    100012: FarmHouse
+    100014: Foundation
+    100016: glass
+    100018: glass1
+    100020: glass2
+    100022: glass3
+    100024: glass4
+    100026: glass5
+    100028: MainDoor
+    100030: Roof
+    100032: WindowFrame
+    100034: WindowFrame2
+    100036: WindowFrame3
+    100038: WindowFrame4
+    100040: WindowFrame5
+    100042: WindowFrame6
+    400000: Door1
+    400002: Door2
+    400004: Doorframe
+    400006: Doorframe1
+    400008: Doorframe2
+    400010: //RootNode
+    400012: FarmHouse
+    400014: Foundation
+    400016: glass
+    400018: glass1
+    400020: glass2
+    400022: glass3
+    400024: glass4
+    400026: glass5
+    400028: MainDoor
+    400030: Roof
+    400032: WindowFrame
+    400034: WindowFrame2
+    400036: WindowFrame3
+    400038: WindowFrame4
+    400040: WindowFrame5
+    400042: WindowFrame6
+    2300000: Door1
+    2300002: Door2
+    2300004: Doorframe
+    2300006: Doorframe1
+    2300008: Doorframe2
+    2300010: FarmHouse
+    2300012: Foundation
+    2300014: glass
+    2300016: glass1
+    2300018: glass2
+    2300020: glass3
+    2300022: glass4
+    2300024: glass5
+    2300026: MainDoor
+    2300028: Roof
+    2300030: WindowFrame
+    2300032: WindowFrame2
+    2300034: WindowFrame3
+    2300036: WindowFrame4
+    2300038: WindowFrame5
+    2300040: WindowFrame6
+    3300000: Door1
+    3300002: Door2
+    3300004: Doorframe
+    3300006: Doorframe1
+    3300008: Doorframe2
+    3300010: FarmHouse
+    3300012: Foundation
+    3300014: glass
+    3300016: glass1
+    3300018: glass2
+    3300020: glass3
+    3300022: glass4
+    3300024: glass5
+    3300026: MainDoor
+    3300028: Roof
+    3300030: WindowFrame
+    3300032: WindowFrame2
+    3300034: WindowFrame3
+    3300036: WindowFrame4
+    3300038: WindowFrame5
+    3300040: WindowFrame6
+    4300000: Door2
+    4300002: Doorframe2
+    4300004: WindowFrame6
+    4300006: glass5
+    4300008: Foundation
+    4300010: Roof
+    4300012: FarmHouse
+    6400000: Door1
+    6400002: Door2
+    6400004: Doorframe
+    6400006: Doorframe1
+    6400008: Doorframe2
+    6400010: FarmHouse
+    6400012: Foundation
+    6400014: glass
+    6400016: glass1
+    6400018: glass2
+    6400020: glass3
+    6400022: glass4
+    6400024: glass5
+    6400026: MainDoor
+    6400028: Roof
+    6400030: WindowFrame
+    6400032: WindowFrame2
+    6400034: WindowFrame3
+    6400036: WindowFrame4
+    6400038: WindowFrame5
+    6400040: WindowFrame6
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
