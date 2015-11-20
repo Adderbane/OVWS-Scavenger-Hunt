@@ -42,16 +42,16 @@ public class ChaseTarget : NetworkBehaviour {
 	}
 
 	//Call Caught command when player collides
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void OnTriggerEnter(Collider collider)
 	{
-		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
+		if (collider.attachedRigidbody.gameObject.tag == "Player") {
 			isTouch = true;
-			colliderId = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>();
+			colliderId = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>();
 		}
 	}
 	
-	protected virtual void OnCollisionExit(Collision collision){
-		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
+	protected virtual void OnTriggerExit(Collider collider){
+		if (collider.attachedRigidbody.gameObject.tag == "Player") {
 			isTouch = false;
 			colliderId = null;
 		}

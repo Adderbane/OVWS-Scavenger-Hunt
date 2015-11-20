@@ -45,7 +45,7 @@ public class TwoPersonPush : ChaseTarget {
 	}
 	
 	//Recognize people hitting an object
-	protected override void OnCollisionEnter(Collision collision)
+	protected void OnCollisionEnter(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") { //whys is there a NULL reference err here?
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
@@ -54,7 +54,7 @@ public class TwoPersonPush : ChaseTarget {
 	}
 	
 	//People leave an object
-	protected override void OnCollisionExit(Collision collision)
+	protected void OnCollisionExit(Collision collision)
 	{
 		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
 			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;

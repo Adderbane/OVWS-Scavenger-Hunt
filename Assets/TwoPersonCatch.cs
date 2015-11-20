@@ -30,19 +30,19 @@ public class TwoPersonCatch : ChaseTarget {
 	}
 
 	//Recognize people hitting an object
-	protected void OnCollisionEnter(Collision collision)
+	protected override void OnTriggerEnter(Collider collider)
 	{
-		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
-			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
+		if (collider.attachedRigidbody.gameObject.tag == "Player") {
+			string team = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
 			CmdEnter(team);
 		}
 	}
 
 	//People leave an object
-	void OnCollisionExit(Collision collision)
+	protected override void OnTriggerExit(Collider collider)
 	{
-		if (collision.collider.attachedRigidbody.gameObject.tag == "Player") {
-			string team = collision.collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
+		if (collider.attachedRigidbody.gameObject.tag == "Player") {
+			string team = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>().myTeam;
 			CmdLeave(team);
 		}
 	}
