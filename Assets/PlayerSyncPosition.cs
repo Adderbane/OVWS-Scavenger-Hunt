@@ -44,12 +44,12 @@ public class PlayerSyncPosition : NetworkBehaviour
 	{
 		if (!spawned && isLocalPlayer) {
 			if (this.gameObject.GetComponent<PlayerIdentity>().GetTeam() == "red") {
-				this.gameObject.transform.position = new Vector3 (-25.4f, 1.04f, 16.72f);
-				CmdSendPositionToServer(new Vector3 (-25.4f, 1.04f, 16.72f));
+				this.gameObject.transform.position = new Vector3 (-41.9f, 1.04f, 1060.9f);
+				CmdSendPositionToServer(new Vector3 (-41.9f, 1.04f, 1060.9f));
 			}
 			else {
-				this.gameObject.transform.position = new Vector3 (41.9f, 1.6f, 8.0f);
-				CmdSendPositionToServer(new Vector3 (41.9f, 1.6f, 8.0f));
+				this.gameObject.transform.position = new Vector3 (25.4f, 1.6f, 1052.2f);
+				CmdSendPositionToServer(new Vector3 (25.4f, 1.6f, 1052.2f));
 			}
 			spawned = true;
 		}
