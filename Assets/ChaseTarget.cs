@@ -31,6 +31,7 @@ public class ChaseTarget : NetworkBehaviour {
 				string team = colliderId.myTeam;
 				Caught(team, score);
 				colliderId.PopupOn(popupText);
+				colliderId.SetLastClue(popupText);
 			}
 		}
 	}

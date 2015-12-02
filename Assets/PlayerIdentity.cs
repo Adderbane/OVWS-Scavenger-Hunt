@@ -16,6 +16,7 @@ public class PlayerIdentity : NetworkBehaviour {
 
 	[SerializeField]
 	public Material[] mats;
+	private string lastClue;
 
 	public override void OnStartLocalPlayer ()
 	{
@@ -27,6 +28,7 @@ public class PlayerIdentity : NetworkBehaviour {
 	// Use this for initialization
 	void Awake () {
 		myTransform = transform;
+		lastClue = "Haven't found a clue yet\n\n (Click to close)";
 	}
 	
 	// Update is called once per frame
@@ -34,6 +36,9 @@ public class PlayerIdentity : NetworkBehaviour {
 		if (myTransform.name == "" || myTransform.name == "Player(Clone)") {
 			SetIdentity();
 			AssignMat();
+		}
+		if (Input.GetKeyDown (KeyCode.I)) {
+			PopupOn(lastClue);
 		}
 	}
 
@@ -82,6 +87,12 @@ public class PlayerIdentity : NetworkBehaviour {
 		}
 		else {
 			myTransform.name = MakeMyID();
+		}
+	}
+
+	public void SetLastClue(string popText){
+		if (isLocalPlayer) {
+			lastClue = popText;
 		}
 	}
 
