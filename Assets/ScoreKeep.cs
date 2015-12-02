@@ -46,10 +46,23 @@ public class ScoreKeep : NetworkBehaviour {
 		} else if (team == "red" && score > redScore) {
 			redScore = score;
 		}
+
+		//let's test this out
+		if (blueScore == 2 || redScore == 2) {
+			//this line of code is from "ForcedReset.cs"
+			// check the scripts
+			//it should work
+			Application.LoadLevelAsync(Application.loadedLevelName);
+		}
 	}
+	//when score reaches a certain level, reset scene or
+	//disconnect all players
+	//disconnect would not work, it does not reset state of world
 	
 	[Client]
 	public void UpdateScore(string team, string score){
+		//all this does is send a message across clients
+		//so that score can be viewed
 		var msg = new StringMessage (team+score);
 		NetworkManager.singleton.client.Send (chatMsg, msg);
 	}
