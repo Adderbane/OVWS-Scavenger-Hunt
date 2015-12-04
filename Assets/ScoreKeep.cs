@@ -50,12 +50,12 @@ public class ScoreKeep : NetworkBehaviour {
 		}
 
 		//let's test this out
-		if (blueScore == 2 || redScore == 2) {
+		//if (blueScore == 2 || redScore == 2) {
 			//this line of code is from "ForcedReset.cs"
 			// check the scripts
 			//it should work
-			Application.LoadLevelAsync(Application.loadedLevelName);
-		}
+			//Application.LoadLevelAsync(Application.loadedLevelName);
+		//}
 	}
 	//when score reaches a certain level, reset scene or
 	//disconnect all players

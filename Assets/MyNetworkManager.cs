@@ -119,7 +119,7 @@ public class MyNetworkManager: NetworkManager
 	{
 		GameObject.Find ("btnDisconnect").GetComponent<Button> ().onClick.RemoveAllListeners ();
 		GameObject.Find ("btnDisconnect").GetComponent<Button> ().onClick.AddListener (NetworkManager.singleton.StopClient);
-		BackgroundSoundChange sound = GameObject.Find ("BackgroundSound").GetComponent<BackgroundSoundChange> ();
-		StartCoroutine(sound.MusicTimer());
+		//BackgroundSoundChange sound = GameObject.Find ("BackgroundSound").GetComponent<BackgroundSoundChange> ();
+		//StartCoroutine(sound.MusicTimer());
 	}
 }
