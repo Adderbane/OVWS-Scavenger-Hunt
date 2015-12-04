@@ -49,11 +49,9 @@ public class ChaseTarget : NetworkBehaviour {
 			isTouch = true;
 			colliderId = collider.GetComponentInParent<PlayerIdentity>();
 
-			//colliderId = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>();
-
-			//collider.getParentComponent<Transform>().tag
-			//formerly:
-			//collider.attachedRigidbody.gameObject.tag == "Player"
+			//Let's test this badboy out
+			/*Application.LoadLevel (Application.loadedLevel);
+			Debug.Log("Reloaded");*/
 		}
 	}
 	
