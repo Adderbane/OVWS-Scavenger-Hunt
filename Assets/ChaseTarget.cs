@@ -45,14 +45,20 @@ public class ChaseTarget : NetworkBehaviour {
 	//Call Caught command when player collides
     protected virtual void OnTriggerEnter(Collider collider)
 	{
-		if (collider.attachedRigidbody.gameObject.tag == "Player") {
+		if (collider.GetComponentInParent<Transform>().tag == "Player") {
 			isTouch = true;
-			colliderId = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>();
+			colliderId = collider.GetComponentInParent<PlayerIdentity>();
+
+			//colliderId = collider.attachedRigidbody.gameObject.GetComponent<PlayerIdentity>();
+
+			//collider.getParentComponent<Transform>().tag
+			//formerly:
+			//collider.attachedRigidbody.gameObject.tag == "Player"
 		}
 	}
 	
 	protected virtual void OnTriggerExit(Collider collider){
-		if (collider.attachedRigidbody.gameObject.tag == "Player") {
+		if (collider.GetComponentInParent<Transform>().tag == "Player") {
 			isTouch = false;
 			colliderId = null;
 		}
