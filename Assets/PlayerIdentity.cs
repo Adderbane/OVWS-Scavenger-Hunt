@@ -17,7 +17,7 @@ public class PlayerIdentity : NetworkBehaviour {
 	[SerializeField]
 	public Material[] mats;
 	private string lastClue;
-
+	
 	public override void OnStartLocalPlayer ()
 	{
 		GetNetIdentity ();
