@@ -17,6 +17,7 @@ public class PlayerIdentity : NetworkBehaviour {
 	[SerializeField]
 	public Material[] mats;
 	private string lastClue;
+	private string controls;
 	
 	public override void OnStartLocalPlayer ()
 	{
@@ -29,6 +30,7 @@ public class PlayerIdentity : NetworkBehaviour {
 	void Awake () {
 		myTransform = transform;
 		lastClue = "Haven't found a clue yet\n\n (Click to close)";
+		controls = "Controls\n\nWASD - Move  LSHIFT - Sprint  Space - Jump\nI to see controls  R to read clue  L to read most recent clue\n\n (Click to close)";
 	}
 	
 	// Update is called once per frame
@@ -37,8 +39,11 @@ public class PlayerIdentity : NetworkBehaviour {
 			SetIdentity();
 			AssignMat();
 		}
-		if (Input.GetKeyDown (KeyCode.I)) {
+		if (Input.GetKeyDown (KeyCode.L)) {
 			PopupOn(lastClue);
+		}
+		if (Input.GetKeyDown (KeyCode.I)) {
+			PopupOn(controls);
 		}
 	}
 
