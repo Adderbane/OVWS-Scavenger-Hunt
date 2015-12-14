@@ -27,7 +27,7 @@ public class ChaseTarget : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isTouch) {
-			if(Input.GetKeyDown(KeyCode.L)){
+			if(Input.GetKeyDown(KeyCode.R)){
 				string team = colliderId.myTeam;
 				Caught(team, score);
 				colliderId.PopupOn(popupText);
