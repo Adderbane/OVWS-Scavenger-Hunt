@@ -52,7 +52,7 @@ public class ScoreKeep : NetworkBehaviour {
 		}
 
 		//let's test this out
-		if (blueScore == 5 || redScore == 5) {
+		if (blueScore == 11 || redScore == 11) {
 			//this line of code is from "ForcedReset.cs"
 			// check the scripts
 			//it should work
