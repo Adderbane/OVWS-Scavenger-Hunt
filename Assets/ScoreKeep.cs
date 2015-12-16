@@ -11,6 +11,8 @@ public class ScoreKeep : NetworkBehaviour {
 	[SyncVar]
 	public int blueScore;
 
+	public GameObject screenToRender;
+
 	const short chatMsg = MsgType.Highest + 2;
 
 	Text redScoreText;
@@ -50,12 +52,14 @@ public class ScoreKeep : NetworkBehaviour {
 		}
 
 		//let's test this out
-		//if (blueScore == 2 || redScore == 2) {
+		if (blueScore == 5 || redScore == 5) {
 			//this line of code is from "ForcedReset.cs"
 			// check the scripts
 			//it should work
 			//Application.LoadLevelAsync(Application.loadedLevelName);
-		//}
+			screenToRender.GetComponent<Image>().enabled = true;
+			Debug.Log("Winner!");
+		}
 	}
 	//when score reaches a certain level, reset scene or
 	//disconnect all players
